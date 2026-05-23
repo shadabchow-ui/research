@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans), var(--font-inter), system-ui, sans-serif;
+
+  /* Surface / background */
+  --color-upcube-bg: #ffffff;
+  --color-upcube-surface: #f5f5f5;
+  --color-upcube-surface-hover: #ebebeb;
+  --color-upcube-elevated: #ffffff;
+  --color-upcube-inverse: #0a0a0a;
+
+  /* Borders */
+  --color-upcube-border: #e5e5e5;
+  --color-upcube-border-light: #f0f0f0;
+
+  /* Text */
+  --color-upcube-text: #0a0a0a;
+  --color-upcube-text-muted: #525252;
+  --color-upcube-text-dim: #a3a3a3;
+
+  /* Accent / primary */
+  --color-upcube-primary: #0a0a0a;
+  --color-upcube-primary-hover: #262626;
+  --color-upcube-primary-foreground: #ffffff;
+
+  /* Status colors — muted for neutral palette */
+  --color-upcube-success: #171717;
+  --color-upcube-success-subtle: #f5f5f5;
+  --color-upcube-warning: #525252;
+  --color-upcube-warning-subtle: #f5f5f5;
+  --color-upcube-error: #171717;
+  --color-upcube-error-subtle: #f5f5f5;
+  --color-upcube-info: #525252;
+  --color-upcube-info-subtle: #f5f5f5;
+}
+
+.dark {
+  --color-upcube-bg: #0a0a0a;
+  --color-upcube-surface: #141414;
+  --color-upcube-surface-hover: #1f1f1f;
+  --color-upcube-elevated: #1a1a1a;
+  --color-upcube-inverse: #ffffff;
+
+  --color-upcube-border: #262626;
+  --color-upcube-border-light: #1f1f1f;
+
+  --color-upcube-text: #fafafa;
+  --color-upcube-text-muted: #a3a3a3;
+  --color-upcube-text-dim: #525252;
+
+  --color-upcube-primary: #fafafa;
+  --color-upcube-primary-hover: #e5e5e5;
+  --color-upcube-primary-foreground: #0a0a0a;
+
+  --color-upcube-success: #e5e5e5;
+  --color-upcube-success-subtle: #1a1a1a;
+  --color-upcube-warning: #a3a3a3;
+  --color-upcube-warning-subtle: #1a1a1a;
+  --color-upcube-error: #e5e5e5;
+  --color-upcube-error-subtle: #1a1a1a;
+  --color-upcube-info: #a3a3a3;
+  --color-upcube-info-subtle: #1a1a1a;
+}
+
+/* Backward compatibility aliases — map old avatar tokens to new upcube tokens */
+@theme {
+  --color-avatar-bg: var(--color-upcube-bg);
+  --color-avatar-surface: var(--color-upcube-surface);
+  --color-avatar-surface-hover: var(--color-upcube-surface-hover);
+  --color-avatar-border: var(--color-upcube-border);
+  --color-avatar-border-light: var(--color-upcube-border-light);
+  --color-avatar-text: var(--color-upcube-text);
+  --color-avatar-text-muted: var(--color-upcube-text-muted);
+  --color-avatar-text-dim: var(--color-upcube-text-dim);
+  --color-avatar-accent: var(--color-upcube-primary);
+  --color-avatar-accent-hover: var(--color-upcube-primary-hover);
+  --color-avatar-accent-subtle: var(--color-upcube-surface);
+  --color-avatar-glow: transparent;
+  --color-avatar-glow-strong: transparent;
+  --color-avatar-success: var(--color-upcube-success);
+  --color-avatar-success-subtle: var(--color-upcube-success-subtle);
+  --color-avatar-warning: var(--color-upcube-warning);
+  --color-avatar-warning-subtle: var(--color-upcube-warning-subtle);
+  --color-avatar-error: var(--color-upcube-error);
+  --color-avatar-error-subtle: var(--color-upcube-error-subtle);
+  --color-avatar-info: var(--color-upcube-info);
+  --color-avatar-info-subtle: var(--color-upcube-info-subtle);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-upcube-border);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-upcube-bg);
+    color: var(--color-upcube-text);
+  }
+
+  ::selection {
+    background-color: var(--color-upcube-surface-hover);
+    color: var(--color-upcube-text);
+  }
+
+  a:focus-visible,
+  input:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-upcube-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .avatar-glow {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+  }
+
+  .avatar-glow-strong {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.06);
+  }
+
+  .avatar-gradient-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    color: var(--color-upcube-text);
+  }
+
+  .avatar-gradient-border {
+    position: relative;
+  }
+
+  .avatar-gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--color-upcube-border);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .avatar-panel {
+    background-color: var(--color-upcube-surface);
+    border: 1px solid var(--color-upcube-border);
+    border-radius: 0.75rem;
+  }
+
+  .avatar-panel-hover {
+    background-color: var(--color-upcube-surface);
+    border: 1px solid var(--color-upcube-border);
+    border-radius: 0.75rem;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s,
+      background-color 0.15s;
+  }
+
+  .avatar-panel-hover:hover {
+    border-color: var(--color-upcube-primary);
+    background-color: var(--color-upcube-surface-hover);
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading="lazy"] {
+    clip-path: inset(0.6px);
+  }
+}
+
+@keyframes ethen-breath {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(var(--breath-scale, 1.02));
+    opacity: 0.8;
+  }
+}
+
+@keyframes ethen-mouth-wave {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleX(1.3);
+    opacity: 0.7;
+  }
+}
+
+@keyframes ethen-think-dot {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.ethen-breath {
+  animation: ethen-breath var(--breath-duration, 3s) ease-in-out infinite;
+}
+
+.ethen-mouth-wave {
+  animation: ethen-mouth-wave 0.6s ease-in-out infinite;
+}
+
+.ethen-think-dot {
+  animation: ethen-think-dot 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ethen-breath,
+  .ethen-mouth-wave,
+  .ethen-think-dot {
+    animation: none;
+  }
+}
