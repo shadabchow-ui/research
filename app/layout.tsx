@@ -2,7 +2,7 @@ import { Navbar } from "components/layout/navbar";
 import Footer from "components/layout/footer";
 import { ThemeProvider } from "components/theme-provider";
 import { WelcomeToast } from "components/welcome-toast";
-import { geistSans, inter } from "lib/fonts";
+import { inter } from "lib/fonts";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -30,11 +30,7 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${inter.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

@@ -11,15 +11,3 @@ export const interItalic = localFont({
   variable: "--font-inter-italic",
   display: "swap",
 });
-
-export const geistSans = localFont({
-  src: "../public/fonts/geist/Geist-VariableFont_wght.ttf",
-  variable: "--font-geist-sans",
-  display: "swap",
-});
-
-export const geistItalic = localFont({
-  src: "../public/fonts/geist/Geist-Italic-VariableFont_wght.ttf",
-  variable: "--font-geist-italic",
-  display: "swap",
-});
